@@ -26,7 +26,7 @@ namespace Prakt1Var25
                 y = (15 * x) / (c + 9); 
             }
 
-            Console.WriteLine(y);
+            Console.WriteLine(y); //
         }
     }
 }
