@@ -6,27 +6,36 @@ namespace Prakt1Var25
     {
         static void Main(string[] args)
         {
-            double a = Convert.ToDouble(Console.ReadLine());
-            double b = Convert.ToDouble(Console.ReadLine());
-            double c = Convert.ToDouble(Console.ReadLine());
-            double x = Convert.ToDouble(Console.ReadLine());
-            double y;
-
-            if (x < 0 || b != 0)
+            try
             {
-                y = a * Math.Pow(x, 4) + b * Math.Pow(x, 2);
+                Console.WriteLine("a value: ");
+                double a = Convert.ToDouble(Console.ReadLine());
+                Console.WriteLine("b value: ");
+                double b = Convert.ToDouble(Console.ReadLine());
+                double c;
+                Console.WriteLine("eps value: ");
+                double eps = Convert.ToDouble(Console.ReadLine());
 
+                do
+                {
+                    c = (a + b) / 2;
+                    if (GetF(c) * GetF(a) < 0)
+                        b = c;
+                    else
+                        a = c;
+                    Console.WriteLine(c);
+                }
+                while (Math.Abs(b - a) >= 2 * eps);
             }
-            else if (x >= 0 && c != 0)
+            catch(Exception ex)
             {
-                y = (x + a) / c; 
+                Console.WriteLine(ex.Message);
             }
-            else
-            {
-                y = (15 * x) / (c + 9); 
-            }
+        }
 
-            Console.WriteLine(y);
+        static double GetF(double x)
+        {
+            return (x + Math.Log(x + 0.5) - 0.5);
         }
     }
 }
